@@ -1,0 +1,7 @@
+Flask
+gunicorn
+request
+render_template
+generate
+spacy
+random

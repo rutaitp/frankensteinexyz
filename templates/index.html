@@ -1,0 +1,96 @@
+<html>
+<head>
+	<title>Frankensteined</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<!-- <link rel="stylesheet" type="text/css"  href="static/style.css"> -->
+  	<style>
+
+	  	body {
+		background-color: rgba(0,60,128,0.82);
+
+		}
+		a {
+			color: #d00808;
+		}
+		#heading {
+			width: 1100px;
+			margin: auto;
+			vertical-align: middle;
+		}
+		#title {
+			color: rgba(255, 255, 255, 0.9);
+			text-align: center;
+			font-family: Arial;
+			color: #d00808;
+		}
+		#description {
+			color: rgba(255, 255, 255, 0.9);
+			text-align: justify;
+		}
+		#button_container {
+			padding-top: 10px;
+			text-align: center;
+			padding-bottom: 10px;
+			vertical-align: middle;
+		}
+		.dropdown {
+			text-align: center;
+			vertical-align: middle;
+			display: inline-block;
+		}
+		#container{
+			background-color: white;
+			opacity: 0.9;
+			width: 1100px;
+			height: 500px;
+			overflow: scroll;
+			vertical-align: middle;
+			margin: auto;
+			text-align: justify;
+			font-size: 11pt;
+			font-family: Arial;
+			border-radius: 5px;
+			padding: 10px;
+		}
+  	</style>
+</head>
+<body>
+	<div id="heading">
+		<h2 id="title">Frankensteined</h2>
+		<p id="description">
+			Project playing with language replacement using spacy.io.
+			<br>
+			In the current version original text is Donald Trump's Inauguration speech, replacement text: scripts of ten different sci-fi movies.
+			<br>
+			How it works? After you choose the sci-fi movie below it autogenerates new inauguration speech by adding movie's POS to the original speech's POS. It's like if Frankenstein was giving a speech using the talk structure of Donald Trump.
+			<br>
+			Python libraries used: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a> to scrape text from <a href="http://www.imsdb.com/genre/Sci-Fi">IMSDB</a> site, <a href="https://spacy.io/docs/usage/pos-tagging">spacy.io POS tagging</a> to generate new speech, <a href="http://flask.pocoo.org/">flask</a> for website creation.
+			<br>
+			Original inauguration speech can be found <a href="https://www.whitehouse.gov/inaugural-address">here</a>. By <a href="https://github.com/rutaitp">rutak</a>.
+		</p>
+
+		<div id="button_container">
+		<div class="dropdown">
+    	<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Choose a movie to generate a speech<span class="caret"></span></button>
+    	<ul class="dropdown-menu">
+     		<li><a href="/speech/?text=9">"9" by Pamela Pettler</a></li>
+     		<li><a href="/speech/?text=aliens">"Aliens" by James Cameron, 1985</a></li>
+      		<li><a href="/speech/?text=armageddon">"Armageddon" by Jonathan Hensleigh & J.J. Abrams, 1998</a></li>
+      		<li><a href="/speech/?text=avatar">"Avatar" by James Cameron</a></li>
+      		<li><a href="/speech/?text=blade_runner">"Blade Runner" by Hampton Fancher, 1980</a></li>
+      		<li><a href="/speech/?text=book_of_eli">"Book of Eli" by Gary Whitta, 2007</a></li>
+      		<li><a href="/speech/?text=frankenstein">"Frankenstein" by Steph Lady & Frank Darabont, 1993</a></li>
+      		<li><a href="/speech/?text=space_odyssey">"2001: A Space Odyssey" by Stanley Kubrick & Arthur C. Clark, 1989</a></li>
+      		<li><a href="/speech/?text=the_avengers">"The Avengers" by Joss Whedon, 2012</a></li>
+      		<li><a href="/speech/?text=twelve_monkeys">"Twelve Monkeys" by David & Janet Peoples, 1994</a></li>
+    	</ul>
+  		</div>
+		</div>
+	</div>
+	<div id="container" width="400px" height="600px" overflow="auto" white-space="pre-wrap">
+		{% autoescape false %} {{outfile}} {% endautoescape %}
+	</div>
+</body>
+</html>
